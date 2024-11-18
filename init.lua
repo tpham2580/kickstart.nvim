@@ -102,7 +102,7 @@ vim.g.have_nerd_font = false
 vim.opt.number = true
 -- You can also add relative line numbers, to help with jumping.
 --  Experiment for yourself to see if you like it!
-vim.opt.relativenumber = true
+vim.opt.relativenumber = false
 
 -- Enable mouse mode, can be useful for resizing splits for example!
 vim.opt.mouse = 'a'
@@ -924,6 +924,16 @@ require('lazy').setup({
   -- NOTE: The Primeagen vim-be-good plugin
   {
     'ThePrimeagen/vim-be-good',
+  },
+  {
+    -- NOTE:
+    'sindrets/diffview.nvim',
+    dependencies = 'nvim-lua/plenary.nvim', -- Diffview requires plenary.nvim
+    config = function()
+      require('diffview').setup {
+        -- Optional configuration settings can go here.
+      }
+    end,
   },
   -- The following comments only work if you have downloaded the kickstart repo, not just copy pasted the
   -- init.lua. If you want these files, they are in the repository, so you can just download them and
