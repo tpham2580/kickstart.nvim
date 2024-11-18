@@ -91,7 +91,7 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
 -- Set to true if you have a Nerd Font installed and selected in the terminal
-vim.g.have_nerd_font = false
+vim.g.have_nerd_font = true
 
 -- [[ Setting options ]]
 -- See `:help vim.opt`
@@ -934,6 +934,32 @@ require('lazy').setup({
         -- Optional configuration settings can go here.
       }
     end,
+  },
+  {
+    -- NOTE: Web Devicons for Nerd Fonts
+    'nvim-tree/nvim-web-devicons',
+    opts = {
+      -- Default options are sufficient; add custom settings here if needed
+    },
+  },
+  {
+    -- NOTE: Leetcode
+    -- Just type in nvim Leetcode.nvim to launch terminal
+    'kawre/leetcode.nvim',
+    build = ':TSUpdate html',
+    dependencies = {
+      'nvim-telescope/telescope.nvim',
+      'nvim-lua/plenary.nvim', -- required by telescope
+      'MunifTanjim/nui.nvim',
+
+      -- optional
+      'nvim-treesitter/nvim-treesitter',
+      'rcarriga/nvim-notify',
+      'nvim-tree/nvim-web-devicons',
+    },
+    opts = {
+      -- configuration goes here
+    },
   },
   -- The following comments only work if you have downloaded the kickstart repo, not just copy pasted the
   -- init.lua. If you want these files, they are in the repository, so you can just download them and
