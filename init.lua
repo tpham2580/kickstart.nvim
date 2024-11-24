@@ -160,6 +160,9 @@ vim.opt.scrolloff = 10
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
 
+-- Code Action for dropdown select
+vim.keymap.set({ 'n', 'v' }, '<space>ca', vim.lsp.buf.code_action, { desc = 'Code actions' })
+
 -- Center the cursor after scrolling with <C-d> and <C-u>
 vim.keymap.set('n', '<C-d>', '<C-d>zz', { desc = 'Scroll down and center cursor' })
 vim.keymap.set('n', '<C-u>', '<C-u>zz', { desc = 'Scroll up and center cursor' })
@@ -673,6 +676,30 @@ require('lazy').setup({
             server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
             require('lspconfig')[server_name].setup(server)
           end,
+        },
+      }
+
+      -- emmet autocomplete
+      require('lspconfig').emmet_ls.setup {
+        capabilities = require('cmp_nvim_lsp').default_capabilities(),
+        filetypes = {
+          'html',
+          'typescriptreact',
+          'javascriptreact',
+          'javascript',
+          'typescript',
+          'css',
+          'sass',
+          'scss',
+          'less',
+        },
+        init_options = {
+          html = {
+            options = {
+              -- For possible options, see: https://github.com/emmetio/emmet/blob/master/src/config.ts#L79-L267
+              ['bem.enabled'] = true,
+            },
+          },
         },
       }
     end,
